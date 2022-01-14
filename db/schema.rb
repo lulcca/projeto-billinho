@@ -13,10 +13,10 @@
 ActiveRecord::Schema.define(version: 2022_01_13_002851) do
 
   create_table "enrollments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.decimal "total_value", precision: 10
-    t.integer "max_payment"
-    t.integer "payment_due_date"
-    t.string "course_name"
+    t.decimal "total_value", precision: 10, null: false
+    t.integer "max_payment", null: false
+    t.integer "payment_due_date", null: false
+    t.string "course_name", null: false
     t.bigint "institution_id", null: false
     t.bigint "student_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -26,30 +26,30 @@ ActiveRecord::Schema.define(version: 2022_01_13_002851) do
   end
 
   create_table "institutions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "cnpj"
-    t.string "type"
+    t.string "ies_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "payments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.decimal "value", precision: 10
-    t.date "due_date"
+    t.decimal "value", precision: 10, null: false
+    t.date "due_date", null: false
     t.bigint "enrollment_id", null: false
-    t.string "status"
+    t.string "status", default: "Aberta"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["enrollment_id"], name: "index_payments_on_enrollment_id"
   end
 
   create_table "students", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.string "cpf"
+    t.string "name", null: false
+    t.string "cpf", null: false
     t.date "birth"
     t.integer "phone"
-    t.string "gender"
-    t.string "payment_method"
+    t.string "gender", null: false
+    t.string "payment_method", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

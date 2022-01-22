@@ -31,13 +31,12 @@ class Api::V1::EnrollmentsController < ApplicationController
                 d_date = Date.new(y,m,d)
             end
 
-            x=0
             for p in 0..(enrollment.max_payment - 1)
                 payment = Payment.new(value: payments_value, due_date: d_date >> p ,enrollment_id: enrollment.id)
                 payment.save
             end
 
-            render json: {message: x, data: enrollment}, status: 200
+            render json: enrollment, status: 200
         else
             render json: {error: "Error creating enrollment"}
         end

@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2022_01_13_002851) do
 
   create_table "enrollments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.decimal "total_value", precision: 10, null: false
+    t.decimal "total_value", precision: 10, scale: 2, null: false
     t.integer "max_payment", null: false
     t.integer "payment_due_date", null: false
     t.string "course_name", null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2022_01_13_002851) do
   end
 
   create_table "payments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.decimal "value", precision: 10, null: false
+    t.decimal "value", precision: 10, scale: 2, null: false
     t.date "due_date", null: false
     t.bigint "enrollment_id", null: false
     t.string "status", default: "Aberta"

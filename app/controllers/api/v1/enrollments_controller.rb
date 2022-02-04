@@ -22,7 +22,7 @@ class Api::V1::EnrollmentsController < ApplicationController
             
             y = Date.today.year
             m = Date.today.month
-            d = enrollment.payment_due_date #Date.today.day
+            d = enrollment.payment_due_date
 
             if (d<=Date.today.day)
                 #fixing due_date in case the day is today or had already passed
